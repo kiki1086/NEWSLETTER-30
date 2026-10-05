@@ -67,10 +67,14 @@ export const App: React.FC = () => {
       <BlossomPetalDrift />
 
       {/* Editorial Masthead */}
-      <Masthead />
+      <div className="no-print">
+        <Masthead />
+      </div>
 
       {/* Main Section Navigation Bar */}
-      <Navigation />
+      <div className="no-print">
+        <Navigation />
+      </div>
 
       {/* Main Content with Horizontal Editorial Page Transition */}
       <main className="flex-1" id="main-content" role="main">
@@ -105,7 +109,9 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer Colophon */}
-      <Footer />
+      <div className="no-print">
+        <Footer />
+      </div>
     </div>
   );
 };

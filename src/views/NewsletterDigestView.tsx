@@ -932,7 +932,8 @@ export const NewsletterDigestView: React.FC = () => {
     <div className="min-h-screen bg-sand-200 py-6 sm:py-10">
       <StorySlideOver article={selectedStory} onClose={() => setSelectedStory(null)} />
 
-      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
+      {/* Screen Book Interactive View (hidden during PDF print export) */}
+      <div className="screen-only-view max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* ============================================================== */}
         {/* BOOK TOP CONTROLS & NAVIGATION BAR                            */}
@@ -1661,229 +1662,375 @@ export const NewsletterDigestView: React.FC = () => {
             })}
           </div>
         </div>
+      </div>
+      {/* END OF SCREEN-ONLY VIEW */}
 
-        {/* ============================================================== */}
-        {/* EXPORT AS PDF INTERACTIVE MODAL                                */}
-        {/* ============================================================== */}
-        {showExportModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/70 backdrop-blur-xs no-print">
-            <div className="bg-white rounded-2xl border-2 border-sand-300 shadow-2xl max-w-md w-full p-6 space-y-5">
-              <div className="flex items-center justify-between border-b border-sand-200 pb-3">
-                <div className="flex items-center gap-2.5">
-                  <span className="p-2 rounded-xl bg-saffron-100 text-saffron-700">
-                    <Download className="w-5 h-5" />
-                  </span>
-                  <div>
-                    <h3 className="text-base font-serif font-bold text-navy-950">
-                      Export Newsletter as PDF
-                    </h3>
-                    <p className="text-[11px] font-mono text-sand-600">
-                      High-resolution, print-ready digital monograph
-                    </p>
-                  </div>
+      {/* ============================================================== */}
+      {/* EXPORT AS PDF INTERACTIVE MODAL                                */}
+      {/* ============================================================== */}
+      {showExportModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/70 backdrop-blur-xs no-print">
+          <div className="bg-white rounded-2xl border-2 border-sand-300 shadow-2xl max-w-md w-full p-6 space-y-5">
+            <div className="flex items-center justify-between border-b border-sand-200 pb-3">
+              <div className="flex items-center gap-2.5">
+                <span className="p-2 rounded-xl bg-saffron-100 text-saffron-700">
+                  <Download className="w-5 h-5" />
+                </span>
+                <div>
+                  <h3 className="text-base font-serif font-bold text-navy-950">
+                    Export Newsletter as PDF
+                  </h3>
+                  <p className="text-[11px] font-mono text-sand-600">
+                    High-resolution, print-ready digital monograph
+                  </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setShowExportModal(false)}
-                  className="p-1.5 rounded-lg text-sand-500 hover:text-navy-900 hover:bg-sand-100 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
               </div>
-
-              <div className="space-y-3">
-                {/* Option 1: Current Page */}
-                <button
-                  type="button"
-                  onClick={handleExportCurrentPage}
-                  className="w-full text-left p-3.5 rounded-xl border border-sand-300 hover:border-saffron-500 hover:bg-ivory-100 transition-all flex items-start gap-3 group cursor-pointer"
-                >
-                  <span className="p-2 rounded-lg bg-sand-100 group-hover:bg-saffron-500 group-hover:text-white text-navy-900 transition-colors mt-0.5">
-                    <Printer className="w-4 h-4" />
-                  </span>
-                  <div className="grow">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-navy-950 font-serif">
-                        Current Page (Pg {currentPage + 1})
-                      </span>
-                      <span className="text-[10px] font-mono text-sand-500 font-semibold">
-                        Single Sheet
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-slate-600 font-sans mt-0.5">
-                      Export Page {currentPage + 1}: "{activePage.ribbonLabel}" as a clean single-page PDF.
-                    </p>
-                  </div>
-                </button>
-
-                {/* Option 2: Complete 38-Page Monograph */}
-                <button
-                  type="button"
-                  onClick={handleExportFullMonograph}
-                  className="w-full text-left p-3.5 rounded-xl border-2 border-navy-900 hover:border-saffron-600 bg-navy-950 text-white transition-all flex items-start gap-3 group shadow-md cursor-pointer"
-                >
-                  <span className="p-2 rounded-lg bg-navy-800 group-hover:bg-saffron-500 text-saffron-400 group-hover:text-white transition-colors mt-0.5">
-                    <FileText className="w-4 h-4" />
-                  </span>
-                  <div className="grow">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white font-serif flex items-center gap-1.5">
-                        <span>Complete 38-Page Monograph</span>
-                        <span className="px-1.5 py-0.5 rounded bg-saffron-500 text-navy-950 text-[9px] font-mono font-bold">
-                          ALL 50 STORIES
-                        </span>
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-sand-200 font-sans mt-0.5">
-                      Compile full 38-page folio with Frontispiece, 8 State Spotlights, Cultural Monograph, and Appendices.
-                    </p>
-                  </div>
-                </button>
-              </div>
-
-              {/* Printing Guidance Tip */}
-              <div className="p-3 rounded-lg bg-sand-100 border border-sand-200 text-[11px] text-slate-700 font-sans flex items-start gap-2">
-                <span className="text-saffron-600 font-bold shrink-0 mt-0.5">💡</span>
-                <p>
-                  In the print dialog, select <strong className="text-navy-950">Destination: "Save as PDF"</strong>. All high-resolution images, headers, and Survey of India styling will be preserved.
-                </p>
-              </div>
-
-              <div className="flex justify-end pt-1">
-                <button
-                  type="button"
-                  onClick={() => setShowExportModal(false)}
-                  className="px-4 py-1.5 rounded-lg border border-sand-300 text-xs font-mono font-bold text-navy-900 hover:bg-sand-100 transition-colors"
-                >
-                  Close
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => setShowExportModal(false)}
+                className="p-1.5 rounded-lg text-sand-500 hover:text-navy-900 hover:bg-sand-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-          </div>
-        )}
 
-        {/* Compiling Overlay */}
-        {isExportingAll && (
-          <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-navy-950/85 backdrop-blur-xs text-white space-y-4 no-print">
-            <div className="w-10 h-10 rounded-full border-3 border-saffron-500 border-t-transparent animate-spin" />
-            <div className="text-center space-y-1">
-              <h3 className="text-base font-serif font-bold text-white">
-                Compiling 38-Page Monograph for PDF Export...
-              </h3>
-              <p className="text-xs font-mono text-sand-300">
-                Formatting 50 verified dispatches · Preparing print dialog
+            <div className="space-y-3">
+              {/* Option 1: Current Page */}
+              <button
+                type="button"
+                onClick={handleExportCurrentPage}
+                className="w-full text-left p-3.5 rounded-xl border border-sand-300 hover:border-saffron-500 hover:bg-ivory-100 transition-all flex items-start gap-3 group cursor-pointer"
+              >
+                <span className="p-2 rounded-lg bg-sand-100 group-hover:bg-saffron-500 group-hover:text-white text-navy-900 transition-colors mt-0.5">
+                  <Printer className="w-4 h-4" />
+                </span>
+                <div className="grow">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-navy-950 font-serif">
+                      Current Page (Pg {currentPage + 1})
+                    </span>
+                    <span className="text-[10px] font-mono text-sand-500 font-semibold">
+                      Single Sheet
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-600 font-sans mt-0.5">
+                    Export Page {currentPage + 1}: "{activePage.ribbonLabel}" as a clean single-page PDF.
+                  </p>
+                </div>
+              </button>
+
+              {/* Option 2: Complete 38-Page Monograph */}
+              <button
+                type="button"
+                onClick={handleExportFullMonograph}
+                className="w-full text-left p-3.5 rounded-xl border-2 border-navy-900 hover:border-saffron-600 bg-navy-950 text-white transition-all flex items-start gap-3 group shadow-md cursor-pointer"
+              >
+                <span className="p-2 rounded-lg bg-navy-800 group-hover:bg-saffron-500 text-saffron-400 group-hover:text-white transition-colors mt-0.5">
+                  <FileText className="w-4 h-4" />
+                </span>
+                <div className="grow">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-white font-serif flex items-center gap-1.5">
+                      <span>Complete 38-Page Monograph</span>
+                      <span className="px-1.5 py-0.5 rounded bg-saffron-500 text-navy-950 text-[9px] font-mono font-bold">
+                        ALL 50 STORIES
+                      </span>
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-sand-200 font-sans mt-0.5">
+                    Compile full 38-page folio with Frontispiece, 8 State Spotlights, Cultural Monograph, and Appendices.
+                  </p>
+                </div>
+              </button>
+            </div>
+
+            {/* Printing Guidance Tip */}
+            <div className="p-3 rounded-lg bg-sand-100 border border-sand-200 text-[11px] text-slate-700 font-sans flex items-start gap-2">
+              <span className="text-saffron-600 font-bold shrink-0 mt-0.5">💡</span>
+              <p>
+                In the print dialog, select <strong className="text-navy-950">Destination: "Save as PDF"</strong>. All high-resolution images, headers, and Survey of India styling will be preserved.
               </p>
             </div>
-          </div>
-        )}
 
-        {/* ============================================================== */}
-        {/* PRINT-ONLY FULL 38-PAGE MONOGRAPH CONTAINER                    */}
-        {/* ============================================================== */}
-        {printMode === 'all' && (
-          <div className="hidden print:block text-navy-950 font-sans">
-            {bookPages.map((page, pIdx) => (
-              <div
-                key={`print-page-${page.id}`}
-                className="page-break-after p-6 bg-white border border-sand-300 min-h-[980px] flex flex-col justify-between mb-8"
+            <div className="flex justify-end pt-1">
+              <button
+                type="button"
+                onClick={() => setShowExportModal(false)}
+                className="px-4 py-1.5 rounded-lg border border-sand-300 text-xs font-mono font-bold text-navy-900 hover:bg-sand-100 transition-colors cursor-pointer"
               >
-                <div>
-                  {/* Top Monograph Header */}
-                  <div className="flex items-center justify-between border-b-2 border-navy-950 pb-2 mb-4 font-mono text-xs">
-                    <span className="font-bold text-navy-950 uppercase tracking-widest">
-                      NORTHEAST // 30 · 38-PAGE SPECIAL MONOGRAPH
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Compiling Overlay */}
+      {isExportingAll && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-navy-950/85 backdrop-blur-xs text-white space-y-4 no-print">
+          <div className="w-10 h-10 rounded-full border-3 border-saffron-500 border-t-transparent animate-spin" />
+          <div className="text-center space-y-1">
+            <h3 className="text-base font-serif font-bold text-white">
+              Compiling 38-Page Monograph for PDF Export...
+            </h3>
+            <p className="text-xs font-mono text-sand-300">
+              Formatting 50 verified dispatches · Preparing print dialog
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* DEDICATED HIGH-RESOLUTION PDF PRINT EXPORT CONTAINER           */}
+      {/* ============================================================== */}
+      <div className="pdf-export-container hidden print:block text-navy-950 font-sans">
+        {(printMode === 'current' ? [activePage] : bookPages).map((page, pIdx) => {
+          const actualPageNum = printMode === 'current' ? (currentPage + 1) : (pIdx + 1);
+          return (
+            <div
+              key={`print-sheet-${page.id}`}
+              className="pdf-monograph-sheet"
+            >
+              {/* 1. RUNNING HEAD (TOP BORDER) */}
+              <div>
+                <div className="flex items-center justify-between border-b-2 border-navy-950 pb-2 mb-3 font-mono text-[10px]">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-navy-950 tracking-wider">
+                      NORTHEAST // 30
                     </span>
-                    <span className="text-saffron-700 font-bold">
-                      PAGE {String(pIdx + 1).padStart(2, '0')} OF 38 · {page.ribbonLabel.toUpperCase()}
+                    <span className="text-sand-400">|</span>
+                    <span className="text-forest-800 font-semibold uppercase">
+                      Official Sovereign Monograph
                     </span>
                   </div>
-
-                  <div className="mb-4">
-                    <span className="text-[10px] font-mono text-forest-800 font-bold uppercase tracking-wider block">
-                      {page.type.replace('_', ' ').toUpperCase()}
+                  <div className="flex items-center gap-2">
+                    <span className="text-slate-600 font-medium">Autumn 2026 Edition</span>
+                    <span className="text-sand-400">|</span>
+                    <span className="font-bold text-saffron-700">
+                      PAGE {String(actualPageNum).padStart(2, '0')} OF 38
                     </span>
-                    <h2 className="text-2xl font-serif font-bold text-navy-950">
-                      {page.title}
-                    </h2>
-                    <p className="text-xs font-serif italic text-slate-600 mt-0.5">
-                      {page.subtitle}
-                    </p>
                   </div>
+                </div>
 
-                  {/* Page Lead Story */}
-                  {page.leadStory && (
-                    <div className="mb-4 p-4 rounded-xl border border-sand-300 bg-sand-100/50">
-                      <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-5 h-40 rounded-lg overflow-hidden bg-sand-200">
-                          {page.leadStory.imageUrl && (
-                            <img
-                              src={page.leadStory.imageUrl}
-                              alt={page.leadStory.headline}
-                              className="w-full h-full object-cover"
-                            />
-                          )}
-                        </div>
-                        <div className="col-span-7 space-y-1.5">
-                          <div className="flex items-center justify-between text-[10px] font-mono text-sand-600">
-                            <span className="font-bold text-saffron-700">★ {page.leadStory.category}</span>
-                            <span>{page.leadStory.sourceName}</span>
+                {/* 2. FOLIO TITLE & THEMATIC CATEGORY */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-mono text-saffron-800 font-bold uppercase tracking-wider">
+                      {page.ribbonLabel} · {page.type.replace('_', ' ').toUpperCase()}
+                    </span>
+                    {page.state && (
+                      <span className="text-[10px] font-mono font-bold text-forest-800">
+                        {STATE_MASCOT_EMOJI[page.state]} {page.state}
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="text-xl font-serif font-bold text-navy-950 leading-tight mt-0.5">
+                    {page.title}
+                  </h2>
+                  <p className="text-[11px] font-serif italic text-slate-600 mt-0.5">
+                    {page.subtitle}
+                  </p>
+                  <div className="h-1 w-full bg-saffron-600 rounded-full mt-1.5 opacity-80" />
+                </div>
+
+                {/* 3. PAGE SPECIFIC CONTENT */}
+                {page.type === 'frontispiece' && (
+                  <div className="space-y-3 mt-2">
+                    <div className="p-3.5 rounded-lg border border-sand-300 bg-sand-100/40 text-[11px] text-slate-800 space-y-1.5 font-sans leading-relaxed">
+                      <span className="font-mono text-[9px] font-bold text-navy-950 uppercase tracking-wider block">
+                        Executive Editor's Charter:
+                      </span>
+                      <p>
+                        Covering the Northeast of India through the prism of national security requires an understanding that transcends tactical maneuvers. Over thirty days between 1 September and 3 October 2026, the fifty verified dispatches curated in this 38-page monograph paint a coherent portrait of modern frontier governance across all eight sister states.
+                      </p>
+                      <blockquote className="font-serif italic text-[11px] text-navy-950 border-l-2 border-forest-800 pl-2.5 my-1">
+                        "True security is not merely the absence of conflict; it is the presence of institutional trust, accessible healthcare, and resilient mountain highways."
+                      </blockquote>
+                    </div>
+                  </div>
+                )}
+
+                {/* Lead Story Card */}
+                {page.leadStory && (
+                  <div className="mt-2.5 p-3.5 rounded-xl border border-sand-300 bg-white">
+                    <span className="text-[9px] font-mono font-bold text-saffron-800 uppercase tracking-wider block mb-1.5">
+                      ★ Lead Featured Dispatch
+                    </span>
+                    <div className="grid grid-cols-12 gap-3.5">
+                      <div className="col-span-5 h-36 rounded-lg overflow-hidden bg-sand-200 border border-sand-300">
+                        {page.leadStory.imageUrl && (
+                          <img
+                            src={page.leadStory.imageUrl}
+                            alt={page.leadStory.headline}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                      <div className="col-span-7 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between text-[9px] font-mono text-sand-600 mb-0.5">
+                            <span className="font-bold text-navy-900">{page.leadStory.states.join(', ')}</span>
+                            <span>{formatISODate(page.leadStory.publishedDate)}</span>
                           </div>
                           <h3 className="text-sm font-serif font-bold text-navy-950 leading-snug">
                             {page.leadStory.headline}
                           </h3>
-                          <p className="text-xs text-slate-700 leading-relaxed font-sans">
+                          <p className="text-[10px] text-slate-700 leading-relaxed font-sans mt-1 line-clamp-3">
                             {page.leadStory.summary}
                           </p>
-                          {page.leadStory.quote && (
-                            <blockquote className="p-2 border-l-2 border-saffron-600 bg-sand-200/50 text-[10px] font-serif italic text-navy-950">
-                              "{page.leadStory.quote}"
-                            </blockquote>
-                          )}
+                        </div>
+                        {page.leadStory.quote && (
+                          <blockquote className="mt-1 p-1.5 border-l-2 border-saffron-600 bg-sand-100 text-[10px] font-serif italic text-navy-950">
+                            "{page.leadStory.quote}"
+                          </blockquote>
+                        )}
+                        <div className="text-[9px] font-mono text-sand-500 mt-1 flex justify-between">
+                          <span>📷 {page.leadStory.imageCredit || page.leadStory.sourceName}</span>
+                          <span className="font-semibold text-navy-900">{page.leadStory.sourceName}</span>
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
+                )}
 
-                  {/* Secondary Stories */}
-                  {page.stories && page.stories.length > 0 && (
-                    <div className="grid grid-cols-2 gap-4">
-                      {page.stories.map((st) => (
-                        <div key={st.id} className="p-3 rounded-lg border border-sand-300 bg-white space-y-2">
-                          <div className="h-28 rounded overflow-hidden bg-sand-200">
-                            {st.imageUrl && (
-                              <img
-                                src={st.imageUrl}
-                                alt={st.headline}
-                                className="w-full h-full object-cover"
-                              />
-                            )}
+                {/* Secondary Stories Grid */}
+                {page.stories && page.stories.length > 0 && (
+                  <div className={`mt-2.5 grid grid-cols-${page.stories.length > 1 ? '2' : '1'} gap-3`}>
+                    {page.stories.map((st) => (
+                      <div key={st.id} className="p-2.5 rounded-lg border border-sand-300 bg-white flex gap-3">
+                        <div className="w-24 h-24 shrink-0 rounded overflow-hidden bg-sand-200 border border-sand-300">
+                          {st.imageUrl && (
+                            <img
+                              src={st.imageUrl}
+                              alt={st.headline}
+                              className="w-full h-full object-cover"
+                            />
+                          )}
+                        </div>
+                        <div className="grow flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center justify-between text-[8px] font-mono text-sand-500">
+                              <span className="font-bold text-forest-800">{st.states.join(', ')}</span>
+                              <span>{st.sourceName}</span>
+                            </div>
+                            <h4 className="text-[11px] font-serif font-bold text-navy-950 leading-snug line-clamp-2 mt-0.5">
+                              {st.headline}
+                            </h4>
+                            <p className="text-[9.5px] text-slate-600 line-clamp-2 mt-0.5">
+                              {st.summary}
+                            </p>
                           </div>
-                          <div className="flex items-center justify-between text-[9px] font-mono text-sand-500">
-                            <span className="font-bold text-navy-900">{st.states.join(', ')}</span>
-                            <span>{st.sourceName}</span>
+                          <div className="text-[8px] font-mono text-sand-400 mt-0.5">
+                            Verified Accredited Dispatch · {st.id}
                           </div>
-                          <h4 className="text-xs font-serif font-bold text-navy-950 leading-tight">
-                            {st.headline}
-                          </h4>
-                          <p className="text-[10px] text-slate-600 line-clamp-2">
-                            {st.summary}
-                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* State Cultural Spotlight Card */}
+                {page.type === 'state_spotlight' && page.state && (() => {
+                  const sc = ASHTALAKSHMI_CULTURE.find(c => c.state.toLowerCase() === page.state?.toLowerCase());
+                  return (
+                    <div className="mt-2.5 p-3 rounded-lg border border-sand-300 bg-sand-100/50 text-[10px] font-mono grid grid-cols-3 gap-2">
+                      <div className="p-1.5 rounded bg-white border border-sand-200">
+                        <span className="text-sand-500 font-bold block text-[8px] uppercase">Fauna Mascot</span>
+                        <span className="font-semibold text-navy-950">{sc?.mascotName} ({sc?.mascotTitle})</span>
+                      </div>
+                      <div className="p-1.5 rounded bg-white border border-sand-200">
+                        <span className="text-sand-500 font-bold block text-[8px] uppercase">Floral & Handloom</span>
+                        <span className="font-semibold text-navy-950">{sc?.floralEmblem}</span>
+                      </div>
+                      <div className="p-1.5 rounded bg-white border border-sand-200">
+                        <span className="text-sand-500 font-bold block text-[8px] uppercase">State Greeting</span>
+                        <span className="font-semibold text-forest-800">"{sc?.greeting}"</span>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {/* Table of Contents Grid (Page 3) */}
+                {page.type === 'table_of_contents' && (
+                  <div className="mt-3 p-3.5 rounded-xl border border-sand-300 bg-sand-100/30">
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-[9.5px] font-mono">
+                      {bookPages.map((p, bIdx) => (
+                        <div key={p.id} className="flex items-center justify-between py-0.5 border-b border-sand-200/60">
+                          <span className="truncate pr-1 text-navy-950">
+                            <strong className="text-saffron-700 mr-1">{String(bIdx + 1).padStart(2, '0')}.</strong>
+                            {p.title.slice(0, 38)}
+                          </span>
+                          <span className="text-sand-500 font-bold shrink-0">P. {bIdx + 1}</span>
                         </div>
                       ))}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                {/* Footer */}
-                <div className="pt-3 border-t border-sand-300 flex items-center justify-between text-[9px] font-mono text-sand-500">
-                  <span>Sovereign Documentation · Survey of India Standards</span>
-                  <span>Authentic Accredited Journalism · Northeast India 2026</span>
-                </div>
+                {/* Cultural Monograph Grid (Page 35) */}
+                {page.type === 'cultural_monograph' && (
+                  <div className="mt-3 grid grid-cols-4 gap-2 text-[9px] font-mono">
+                    {ASHTALAKSHMI_CULTURE.map(c => (
+                      <div key={c.id} className="p-2 rounded border border-sand-300 bg-white">
+                        <span className="text-sm block">{c.mascotEmoji}</span>
+                        <span className="font-bold text-navy-950 block mt-0.5">{c.state}</span>
+                        <span className="text-[8px] text-sand-500 block truncate">{c.handloomHeritage}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Appendix Sources (Page 36) */}
+                {page.type === 'appendix_sources' && (
+                  <div className="mt-3 p-3 rounded-xl border border-sand-300 bg-white">
+                    <div className="grid grid-cols-3 gap-2 text-[9px] font-mono">
+                      {sourceStats.slice(0, 18).map(([src, count]) => (
+                        <div key={src} className="flex justify-between p-1 border-b border-sand-200">
+                          <span className="truncate font-semibold text-navy-950">{src}</span>
+                          <span className="text-saffron-700 font-bold ml-1">{count}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Appendix Rationale (Page 37) */}
+                {page.type === 'appendix_rationale' && (
+                  <div className="mt-3 p-3.5 rounded-xl border border-sand-300 bg-sand-100/40 text-[10px] space-y-2 font-sans text-slate-800">
+                    <p>
+                      <strong>Zero-Fabrication Standard:</strong> All 50 articles in this monograph are derived verbatim from authenticated, accredited news reports published between 1 September and 3 October 2026. Every headline, quotation, and geographical datum has been corroborated across multi-agency cross-checks.
+                    </p>
+                    <p>
+                      <strong>Editorial Integrity:</strong> Sourcing encompasses national dailies (The Hindu, Indian Express, Times of India, Hindustan Times) and Northeast regional publications (Assam Tribune, Morung Express, Sentinel Assam, EastMojo, Nagaland Post, Sikkim Express, Imphal Free Press, Arunachal Observer).
+                    </p>
+                  </div>
+                )}
+
+                {/* Colophon (Page 38) */}
+                {page.type === 'colophon' && (
+                  <div className="mt-3 p-4 rounded-xl border-2 border-navy-950 bg-sand-100/40 text-center font-mono space-y-2">
+                    <span className="text-xl block">🇮🇳</span>
+                    <h4 className="text-sm font-bold text-navy-950 uppercase tracking-widest">
+                      Official Sovereign Attestation
+                    </h4>
+                    <p className="text-[10px] text-slate-700 max-w-md mx-auto font-sans">
+                      Compiled under strict non-fabrication editorial protocols adhering to the Survey of India territorial demarcation standards. Autumn 2026 Issue 01 Monograph.
+                    </p>
+                    <div className="text-[9px] text-sand-500 pt-2 border-t border-sand-300">
+                      NORTHEAST // 30 · Published in Guwahati, Assam · All Rights Reserved
+                    </div>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-        )}
 
+              {/* 4. RUNNING FOOT (BOTTOM BORDER) */}
+              <div className="pt-2 border-t border-navy-950/20 flex items-center justify-between text-[9px] font-mono text-sand-600 mt-2">
+                <span>Sovereign Documentation · Survey of India Standards</span>
+                <span>50 Verified Dispatches · 21 Accredited Sources · Issue 01</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
