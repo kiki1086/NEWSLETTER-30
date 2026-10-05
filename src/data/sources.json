@@ -1,0 +1,191 @@
+[
+  {
+    "id": "src-thehindu",
+    "name": "The Hindu",
+    "domain": "thehindu.com",
+    "category": "National Daily",
+    "location": "New Delhi / Chennai",
+    "url": "https://www.thehindu.com",
+    "description": "India's premier national daily of record, providing verified coverage of defence dialogues, border security, and statutory notifications."
+  },
+  {
+    "id": "src-indianexpress",
+    "name": "The Indian Express",
+    "domain": "indianexpress.com",
+    "category": "National Daily",
+    "location": "New Delhi",
+    "url": "https://indianexpress.com",
+    "description": "National newspaper of record known for institutional and judicial reporting, including Supreme Court oversight in Manipur."
+  },
+  {
+    "id": "src-sentinel",
+    "name": "The Sentinel Assam",
+    "domain": "sentinelassam.com",
+    "category": "Regional Daily",
+    "location": "Guwahati, Assam",
+    "url": "https://www.sentinelassam.com",
+    "description": "Leading English daily of the Northeast documenting counter-insurgency, anti-narcotics strikes, and frontier affairs."
+  },
+  {
+    "id": "src-morungexpress",
+    "name": "Morung Express",
+    "domain": "morungexpress.com",
+    "category": "Regional Daily",
+    "location": "Dimapur, Nagaland",
+    "url": "https://morungexpress.com",
+    "description": "Prominent regional daily in Nagaland, recognized for direct reporting on Assam Rifles community tours and official releases."
+  },
+  {
+    "id": "src-nagalandpost",
+    "name": "Nagaland Post",
+    "domain": "nagalandpost.com",
+    "category": "Regional Daily",
+    "location": "Dimapur, Nagaland",
+    "url": "https://nagalandpost.com",
+    "description": "Oldest newspaper in Nagaland, providing comprehensive coverage of civic actions, sports tournaments, and rural health camps."
+  },
+  {
+    "id": "src-nagalandtribune",
+    "name": "Nagaland Tribune",
+    "domain": "nagalandtribune.in",
+    "category": "Digital Network",
+    "location": "Kohima, Nagaland",
+    "url": "https://nagalandtribune.in",
+    "description": "Digital news network delivering grassroots reporting on community engagement, educational sports, and civic initiatives."
+  },
+  {
+    "id": "src-eastmojo",
+    "name": "EastMojo",
+    "domain": "eastmojo.com",
+    "category": "Digital Network",
+    "location": "Guwahati, Assam",
+    "url": "https://www.eastmojo.com",
+    "description": "Independent Northeast digital platform covering youth affairs, border transit developments, and community perspectives."
+  },
+  {
+    "id": "src-shillongtimes",
+    "name": "The Shillong Times",
+    "domain": "theshillongtimes.com",
+    "category": "Regional Daily",
+    "location": "Shillong, Meghalaya",
+    "url": "https://theshillongtimes.com",
+    "description": "Oldest English language daily in the Northeast, documenting DGAR apex headquarters, academic MoUs, and inter-state developments."
+  },
+  {
+    "id": "src-tripuratimes",
+    "name": "Tripura Times",
+    "domain": "tripuratimes.com",
+    "category": "Regional Daily",
+    "location": "Agartala, Tripura",
+    "url": "https://tripuratimes.com",
+    "description": "Leading English daily of Tripura covering NCC cadet youth mentorship, tribal medical outreach, and border security."
+  },
+  {
+    "id": "src-indiatodayne",
+    "name": "India Today NE",
+    "domain": "indiatodayne.in",
+    "category": "Digital Network",
+    "location": "Guwahati, Assam",
+    "url": "https://www.indiatodayne.in",
+    "description": "Dedicated Northeast digital bureau providing verified coverage across health breakthroughs, sporting golds, and infrastructure."
+  },
+  {
+    "id": "src-meghalayanexpress",
+    "name": "The Meghalayan Express",
+    "domain": "themeghalayanexpress.com",
+    "category": "Regional Daily",
+    "location": "Shillong, Meghalaya",
+    "url": "https://themeghalayanexpress.com",
+    "description": "State publication specializing in youth sports, civil-military football championships, and local community reporting."
+  },
+  {
+    "id": "src-ukhrultimes",
+    "name": "Ukhrul Times",
+    "domain": "ukhrultimes.com",
+    "category": "Regional Daily",
+    "location": "Ukhrul, Manipur",
+    "url": "https://ukhrultimes.com",
+    "description": "District-level publication providing verified local accounts along the eastern frontier of Manipur."
+  },
+  {
+    "id": "src-krctimes",
+    "name": "KRC Times",
+    "domain": "krctimes.com",
+    "category": "Digital Network",
+    "location": "Silchar, Assam",
+    "url": "https://www.krctimes.com",
+    "description": "Regional portal focusing on public health interventions, nutrition programs, and relief assistance in the Barak Valley and Manipur."
+  },
+  {
+    "id": "src-echoofarunachal",
+    "name": "Echo of Arunachal",
+    "domain": "echoofarunachal.in",
+    "category": "Regional Daily",
+    "location": "Itanagar, Arunachal Pradesh",
+    "url": "http://echoofarunachal.in",
+    "description": "Pioneering English daily of Arunachal Pradesh tracking border infrastructure, Border Roads Organisation projects, and road engineering."
+  },
+  {
+    "id": "src-theprint",
+    "name": "The Print",
+    "domain": "theprint.in",
+    "category": "Policy Portal",
+    "location": "New Delhi",
+    "url": "https://theprint.in",
+    "description": "National digital journalism portal featuring detailed policy analysis on legislative reforms such as the FNTA Bill 2026."
+  },
+  {
+    "id": "src-dailypioneer",
+    "name": "The Pioneer",
+    "domain": "dailypioneer.com",
+    "category": "National Daily",
+    "location": "New Delhi",
+    "url": "https://dailypioneer.com",
+    "description": "Historic national daily providing coverage of high-altitude bilateral military exercises and regional diplomatic developments."
+  },
+  {
+    "id": "src-wargov",
+    "name": "War.gov (DoD Press)",
+    "domain": "war.gov",
+    "category": "Defense Journal",
+    "location": "Washington / International",
+    "url": "https://www.war.gov",
+    "description": "Official press dispatch reporting on combined bilateral military exercises including Exercise Yudh Abhyas 2026."
+  },
+  {
+    "id": "src-ndtv",
+    "name": "NDTV",
+    "domain": "ndtv.com",
+    "category": "National Daily",
+    "location": "New Delhi",
+    "url": "https://www.ndtv.com",
+    "description": "Major national news network covering top-level strategic summits and Army Chief policy addresses."
+  },
+  {
+    "id": "src-indiasentinels",
+    "name": "India Sentinels",
+    "domain": "indiasentinels.com",
+    "category": "Defense Journal",
+    "location": "New Delhi",
+    "url": "https://www.indiasentinels.com",
+    "description": "Specialized defense journal focusing on military operational preparedness, force restructuring, and regional commands."
+  },
+  {
+    "id": "src-nagalandipr",
+    "name": "Nagaland IPR",
+    "domain": "ipr.nagaland.gov.in",
+    "category": "Official Gazette",
+    "location": "Kohima, Nagaland",
+    "url": "https://ipr.nagaland.gov.in",
+    "description": "Official Directorate of Information & Public Relations, Government of Nagaland, documenting verified state and civic events."
+  },
+  {
+    "id": "src-aninews",
+    "name": "ANI News",
+    "domain": "aninews.in",
+    "category": "Digital Network",
+    "location": "New Delhi",
+    "url": "https://www.aninews.in",
+    "description": "India's largest multimedia news agency documenting regional civic initiatives, youth development, and mass participation events."
+  }
+]
